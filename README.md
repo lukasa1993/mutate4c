@@ -1,10 +1,17 @@
 # mutate4c
 
-Mutation testing for **C** projects.
+`mutate4c` performs syntax-aware mutation testing for C. It verifies the baseline, restores source through a crash-recovery journal, separates timeouts and compile errors from killed mutants, and writes a versioned JSON manifest.
 
 ```bash
-python -m pip install git+https://github.com/lukasa1993/mutate4c.git
-mutate4c --test-command "cmake --build build && ctest --test-dir build"
+pipx install git+https://github.com/lukasa1993/mutate4c.git
+mutate4c --test-command "<project test command>" --validate-command "<project build command>"
 ```
 
-The tool checks the baseline test command, mutates one operator at a time, runs tests, and restores the source after each mutant. Exit status `2` means a mutant survived.
+Compiled C-family projects require a detected or explicit validation command. Timeouts, invalid syntax, and compile errors return status `1`; surviving mutants return status `2`.
+
+## Development
+
+```bash
+python -m pip install -e . pytest
+pytest -q
+```
