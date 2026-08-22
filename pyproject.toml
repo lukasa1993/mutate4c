@@ -1,16 +1,31 @@
 [build-system]
-requires=["setuptools>=69","wheel"]
-build-backend="setuptools.build_meta"
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
-name="mutate4c"
-version="0.1.0"
-description="Mutation testing for C projects"
-readme="README.md"
-requires-python=">=3.11"
-license={text="MIT"}
+name = "mutate4c"
+version = "1.0.0"
+description = 'Syntax-aware mutation testing for C projects'
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [{name = "lukasa1993"}]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+]
+dependencies = ["tree-sitter-language-pack==0.13.0"]
+
 [project.scripts]
-mutate4c="mutate4c.cli:main"
+mutate4c = "mutate4c.cli:main"
+
 [tool.setuptools.packages.find]
-where=["src"]
+where = ["src"]
+
 [tool.pytest.ini_options]
-testpaths=["tests"]
+testpaths = ["tests"]
+addopts = "-ra"
